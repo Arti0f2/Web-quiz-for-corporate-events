@@ -9,8 +9,14 @@ if (!process.env.JWT_SECRET) {
 }
 
 export function generateToken(payload: any): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: Number(JWT_EXPIRES_IN) });
+ return jwt.sign(payload, JWT_SECRET, { expiresIn: Number(JWT_EXPIRES_IN) });
 }
+
+// export function generateToken(payload: any): string {
+//   const expiresIn = isNaN(Number(JWT_EXPIRES_IN)) ? JWT_EXPIRES_IN : Number(JWT_EXPIRES_IN);
+//   return jwt.sign(payload, JWT_SECRET, { expiresIn });
+// }
+
 
 export function verifyToken(token: string): Promise<any> {
   return new Promise((resolve, reject) => {
